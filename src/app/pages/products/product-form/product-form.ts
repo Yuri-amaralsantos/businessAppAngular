@@ -17,11 +17,21 @@ export class ProductFormComponent {
   constructor(private productService: ProductService, private router: Router) {}
 
   save() {
+    const exists = this.productService
+      .products()
+      .some((p) => p.name.toLowerCase() === this.name.trim().toLowerCase());
+
+    if (exists) {
+      alert(`O produto "${this.name}" já existe!`);
+      return;
+    }
+
     this.productService.addProduct({
       id: Date.now(),
-      name: this.name,
+      name: this.name.trim(),
       stock: this.stock,
     });
+
     this.router.navigate(['/products']);
   }
 }
