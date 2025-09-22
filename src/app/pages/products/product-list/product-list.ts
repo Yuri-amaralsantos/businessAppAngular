@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -10,8 +11,5 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./product-list.css'],
 })
 export class ProductListComponent {
-  products = signal([
-    { id: 1, name: 'Mouse', stock: 50 },
-    { id: 2, name: 'Teclado', stock: 30 },
-  ]);
+  constructor(public productService: ProductService) {}
 }

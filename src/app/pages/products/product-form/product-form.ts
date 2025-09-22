@@ -1,11 +1,12 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-form',
-  standalone: true, // ⚠️ precisa ser standalone
-  imports: [FormsModule], // ⚠️ aqui incluímos FormsModule
+  standalone: true,
+  imports: [FormsModule],
   templateUrl: './product-form.html',
   styleUrls: ['./product-form.css'],
 })
@@ -13,10 +14,14 @@ export class ProductFormComponent {
   name = '';
   stock = 0;
 
-  constructor(private router: Router) {}
+  constructor(private productService: ProductService, private router: Router) {}
 
   save() {
-    console.log('Produto salvo:', { name: this.name, stock: this.stock });
+    this.productService.addProduct({
+      id: Date.now(),
+      name: this.name,
+      stock: this.stock,
+    });
     this.router.navigate(['/products']);
   }
 }

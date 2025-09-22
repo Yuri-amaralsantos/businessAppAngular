@@ -1,7 +1,7 @@
 <h2>Produtos</h2>
 <a routerLink="/products/new">➕ Novo Produto</a>
 <ul>
-    <li *ngFor="let product of products()">
+    <li *ngFor="let product of productService.products()">
         {{ product.name }} - {{ product.stock }} unidades
     </li>
 </ul>
