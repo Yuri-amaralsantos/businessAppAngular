@@ -1,0 +1,10 @@
+<h2>Novo Produto</h2>
+<form (ngSubmit)="save()">
+    <label>Nome:</label>
+    <input [(ngModel)]="name" name="name" required />
+
+    <label>Estoque inicial:</label>
+    <input type="number" [(ngModel)]="stock" name="stock" required />
+
+    <button type="submit">Salvar</button>
+</form>
