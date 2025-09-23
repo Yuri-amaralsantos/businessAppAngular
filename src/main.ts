@@ -1,6 +1,18 @@
+import 'zone.js';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { App } from './app/app';
+import { importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { provideRouter } from '@angular/router';
 
-bootstrapApplication(App, appConfig)
-  .catch((err) => console.error(err));
+import { App } from './app/app';
+import { routes } from './app/app.routes';
+
+bootstrapApplication(App, {
+  providers: [
+    provideAnimations(),
+    provideRouter(routes),
+    importProvidersFrom(MatDialogModule, MatButtonModule),
+  ],
+});

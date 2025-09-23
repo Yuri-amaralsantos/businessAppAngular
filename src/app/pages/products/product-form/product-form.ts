@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './product-form.html',
   styleUrls: ['./product-form.css'],
 })
@@ -14,7 +17,10 @@ export class ProductFormComponent {
   name = '';
   stock = 0;
 
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(
+    private productService: ProductService,
+    private dialogRef: MatDialogRef<ProductFormComponent>
+  ) {}
 
   save() {
     const exists = this.productService
@@ -32,6 +38,6 @@ export class ProductFormComponent {
       stock: this.stock,
     });
 
-    this.router.navigate(['/products']);
+    this.dialogRef.close();
   }
 }

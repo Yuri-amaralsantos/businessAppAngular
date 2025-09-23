@@ -1,15 +1,20 @@
 h2 {
+  text-align: center;
   margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
-a {
-  display: inline-block;
-  margin-bottom: 1rem;
-  color: #1976d2;
-  text-decoration: none;
-  font-weight: bold;
+button {
+  display: block;
+  margin: 0 auto 1rem auto;
 }
 
-a:hover {
-  text-decoration: underline;
+.table-container {
+  margin: 0 auto;
+  width: 60%;
+}
+
+table {
+  width: 100%;
 }

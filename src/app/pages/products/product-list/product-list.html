@@ -1,7 +1,26 @@
 <h2>Produtos</h2>
-<a routerLink="/products/new">➕ Novo Produto</a>
-<ul>
-    <li *ngFor="let product of productService.products()">
-        {{ product.name }} - {{ product.stock }} unidades
-    </li>
-</ul>
+
+<button mat-raised-button color="primary" (click)="openNewProduct()">
+    ➕ Novo Produto
+</button>
+
+<div class="table-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nome </th>
+            <td mat-cell *matCellDef="let product"> {{product.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="stock">
+            <th mat-header-cell *matHeaderCellDef> Estoque </th>
+            <td mat-cell *matCellDef="let product"> {{product.stock}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of products">
+    </mat-paginator>
+</div>
