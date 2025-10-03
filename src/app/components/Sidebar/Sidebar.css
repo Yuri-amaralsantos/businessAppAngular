@@ -1,3 +1,23 @@
-mat-toolbar {
+mat-nav-list {
+  border-right: 1px solid #ddd;
+  height: calc(100vh - 64px); /* -64px do mat-toolbar */
+  padding: 0;
+  overflow: hidden; /* evita scroll */
+}
+
+a[mat-list-item] {
+  font-weight: 500;
+  color: #444;
+  border-radius: 4px;
+  margin: 4px 8px;
+}
+
+a[mat-list-item]:hover {
+  background-color: #f5f5f5;
+}
+
+a[mat-list-item].active-link {
+  background-color: #1976d2;
+  color: #fff;
   font-weight: bold;
 }
