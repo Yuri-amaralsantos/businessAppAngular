@@ -1,0 +1,14 @@
+<mat-sidenav-container class="app-container">
+    <mat-sidenav mode="side" opened class="sidenav">
+        <app-sidebar></app-sidebar>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <span>Gerenciamento de Estoque</span>
+        </mat-toolbar>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
