@@ -22,4 +22,9 @@ export class ProductService {
   addProduct(product: Product) {
     this._products.update((list) => [...list, product]);
   }
+
+  updateProduct(updated: Product) {
+    this._products.update((list) => list.map((p) => (p.id === updated.id ? updated : p)));
+    return this._products();
+  }
 }
