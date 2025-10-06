@@ -2,12 +2,12 @@
 
 <mat-dialog-content>
     <form (ngSubmit)="save()" #form="ngForm">
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
             <mat-label>Nome</mat-label>
             <input matInput [(ngModel)]="name" name="name" required />
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
             <mat-label>Estoque inicial</mat-label>
             <input matInput type="number" [(ngModel)]="stock" name="stock" required />
         </mat-form-field>
