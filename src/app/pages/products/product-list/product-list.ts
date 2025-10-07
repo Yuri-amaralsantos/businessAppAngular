@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { ProductService, Product } from '../product.service';
+import { ProductService, Product } from '../../../services/product.service';
 import { ProductFormComponent } from '../product-form/product-form';
 import { MatIconModule } from '@angular/material/icon';
 
