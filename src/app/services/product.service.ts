@@ -28,4 +28,8 @@ export class ProductService {
   getById(id: number) {
     return this._products().find((p) => p.id === id);
   }
+
+  removeProduct(productId: number) {
+    this._products.update((list) => list.filter((p) => p.id !== productId));
+  }
 }

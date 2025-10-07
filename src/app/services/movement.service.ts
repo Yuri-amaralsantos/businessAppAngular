@@ -21,7 +21,6 @@ export class MovementService {
     const newM: StockMovement = { id: Date.now(), date: new Date(), ...m };
     this._movements.update((list) => [...list, newM]);
 
-    // Atualiza estoque no ProductService
     const delta = m.type === 'entrada' ? m.quantity : -m.quantity;
     this.productService.adjustStock(m.productId, delta);
   }

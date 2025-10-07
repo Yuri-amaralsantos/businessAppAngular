@@ -7,11 +7,19 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { ProductService, Product } from '../../../services/product.service';
 import { ProductFormComponent } from '../product-form/product-form';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatTableModule, MatPaginatorModule, MatIconModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatIconModule,
+    MatMenuModule,
+  ],
   templateUrl: './product-list.html',
   styleUrls: ['./product-list.css'],
 })
@@ -51,5 +59,11 @@ export class ProductListComponent implements AfterViewInit {
         this.dataSource.data = this.productService.products();
       }
     });
+  }
+  removeProduct(product: Product) {
+    if (confirm(`Deseja remover o produto "${product.name}"?`)) {
+      this.productService.removeProduct(product.id);
+      this.dataSource.data = this.productService.products();
+    }
   }
 }

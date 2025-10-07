@@ -21,13 +21,11 @@ export class MovementHistoryComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  // ⬇️ injeta ambos os serviços
   constructor(
     public movementService: MovementService,
     public productService: ProductService,
     private dialog: MatDialog
   ) {
-    // Inicializa com as movimentações mais recentes primeiro
     const movements = this.movementService.movements().slice().reverse();
     this.dataSource.data = movements;
   }
@@ -36,13 +34,11 @@ export class MovementHistoryComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  // 🔍 Busca o nome do produto pelo ID via ProductService
   productName(id: number) {
     const product = this.productService.getById(id);
     return product ? product.name : '—';
   }
 
-  // ➕ Abre o modal de nova movimentação
   openModal(productId?: number, type?: 'entrada' | 'saida') {
     const dialogRef = this.dialog.open(MovementCreateComponent, {
       width: '450px',
@@ -51,7 +47,6 @@ export class MovementHistoryComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      // Atualiza a tabela após o modal fechar
       const updated = this.movementService.movements().slice().reverse();
       this.dataSource.data = updated;
       this.paginator.firstPage();

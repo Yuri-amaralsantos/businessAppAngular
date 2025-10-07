@@ -1,52 +1,40 @@
 <div class="page-header">
-    <h2>Histórico de Movimentações</h2>
     <button mat-raised-button color="primary" (click)="openModal()">Nova Movimentação</button>
 </div>
 
-<div class="table-container mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
-        <!-- Data -->
-        <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef> Data </th>
-            <td mat-cell *matCellDef="let m"> {{ m.date | date:'short' }} </td>
-        </ng-container>
+    <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Data </th>
+        <td mat-cell *matCellDef="let m"> {{ m.date | date:'short' }} </td>
+    </ng-container>
 
-        <!-- Produto -->
-        <ng-container matColumnDef="product">
-            <th mat-header-cell *matHeaderCellDef> Produto </th>
-            <td mat-cell *matCellDef="let m"> {{ productName(m.productId) }} </td>
-        </ng-container>
+    <ng-container matColumnDef="product">
+        <th mat-header-cell *matHeaderCellDef> Produto </th>
+        <td mat-cell *matCellDef="let m"> {{ productName(m.productId) }} </td>
+    </ng-container>
 
-        <!-- Tipo -->
-        <ng-container matColumnDef="type">
-            <th mat-header-cell *matHeaderCellDef> Tipo </th>
-            <td mat-cell *matCellDef="let m"> {{ m.type | titlecase }} </td>
-        </ng-container>
+    <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Tipo </th>
+        <td mat-cell *matCellDef="let m"> {{ m.type | titlecase }} </td>
+    </ng-container>
 
-        <!-- Quantidade -->
-        <ng-container matColumnDef="quantity">
-            <th mat-header-cell *matHeaderCellDef> Quantidade </th>
-            <td mat-cell *matCellDef="let m"> {{ m.quantity }} </td>
-        </ng-container>
+    <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantidade </th>
+        <td mat-cell *matCellDef="let m"> {{ m.quantity }} </td>
+    </ng-container>
 
-        <!-- Observação -->
-        <ng-container matColumnDef="note">
-            <th mat-header-cell *matHeaderCellDef> Observação </th>
-            <td mat-cell *matCellDef="let m"> {{ m.note || '—' }} </td>
-        </ng-container>
+    <ng-container matColumnDef="note">
+        <th mat-header-cell *matHeaderCellDef> Observação </th>
+        <td mat-cell *matCellDef="let m"> {{ m.note || '—' }} </td>
+    </ng-container>
 
-        <!-- Linhas -->
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
 
-    <div *ngIf="!dataSource.data.length" class="empty">
-        Nenhuma movimentação registrada.
-    </div>
-
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Paginação de movimentações">
-    </mat-paginator>
-
-
+<div *ngIf="!dataSource.data.length" class="empty">
+    Nenhuma movimentação registrada.
 </div>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
