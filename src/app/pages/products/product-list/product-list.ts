@@ -47,7 +47,8 @@ export class ProductListComponent implements AfterViewInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.dataSource.data = this.productService.updateProduct(result);
+        this.productService.updateProduct(result);
+        this.dataSource.data = this.productService.products();
       }
     });
   }

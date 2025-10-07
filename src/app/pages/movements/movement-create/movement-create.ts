@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { MovementService } from '../../../services/movement.service';
 import { ProductService } from '../../../services/product.service';
 
 @Component({
@@ -31,6 +32,7 @@ export class MovementCreateComponent {
 
   constructor(
     private dialogRef: MatDialogRef<MovementCreateComponent>,
+    public movementService: MovementService,
     public productService: ProductService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -43,7 +45,7 @@ export class MovementCreateComponent {
   save() {
     if (!this.productId || !this.type || !this.quantity) return;
 
-    this.productService.addMovement({
+    this.movementService.addMovement({
       productId: this.productId,
       type: this.type,
       quantity: this.quantity,

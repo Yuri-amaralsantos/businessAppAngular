@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MovementService } from '../../../services/movement.service';
 import { ProductService } from '../../../services/product.service';
 import { MovementCreateComponent } from '../movement-create/movement-create';
 
@@ -20,9 +21,14 @@ export class MovementHistoryComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(public productService: ProductService, private dialog: MatDialog) {
-    // Inicializa com as movimentações invertidas (mais recentes primeiro)
-    const movements = this.productService.movements().slice().reverse();
+  // ⬇️ injeta ambos os serviços
+  constructor(
+    public movementService: MovementService,
+    public productService: ProductService,
+    private dialog: MatDialog
+  ) {
+    // Inicializa com as movimentações mais recentes primeiro
+    const movements = this.movementService.movements().slice().reverse();
     this.dataSource.data = movements;
   }
 
@@ -30,11 +36,14 @@ export class MovementHistoryComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  // 🔍 Busca o nome do produto pelo ID via ProductService
   productName(id: number) {
-    return this.productService.getProductById(id)?.name ?? '—';
+    const product = this.productService.getById(id);
+    return product ? product.name : '—';
   }
 
-  openModal(productId?: number, type?: 'entrada' | 'saida' | 'ajuste') {
+  // ➕ Abre o modal de nova movimentação
+  openModal(productId?: number, type?: 'entrada' | 'saida') {
     const dialogRef = this.dialog.open(MovementCreateComponent, {
       width: '450px',
       data: { productId, type },
@@ -43,7 +52,7 @@ export class MovementHistoryComponent implements AfterViewInit {
 
     dialogRef.afterClosed().subscribe(() => {
       // Atualiza a tabela após o modal fechar
-      const updated = this.productService.movements().slice().reverse();
+      const updated = this.movementService.movements().slice().reverse();
       this.dataSource.data = updated;
       this.paginator.firstPage();
     });
