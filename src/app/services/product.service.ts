@@ -15,8 +15,9 @@ export class ProductService {
     this._products.update((list) => [...list, product]);
   }
 
-  updateProduct(updated: Product) {
-    this._products.update((list) => list.map((p) => (p.id === updated.id ? updated : p)));
+  updateProduct(update: { id: number; name: string }) {
+    const products = this._products();
+    this._products.set(products.map((p) => (p.id === update.id ? { ...p, name: update.name } : p)));
   }
 
   adjustStock(productId: number, delta: number) {

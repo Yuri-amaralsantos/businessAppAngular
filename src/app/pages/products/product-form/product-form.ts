@@ -19,6 +19,7 @@ export class ProductFormComponent {
   name = '';
   stock = 0;
   id?: number;
+  isEdit = false;
 
   constructor(
     private productService: ProductService,
@@ -29,6 +30,7 @@ export class ProductFormComponent {
       this.id = data.id;
       this.name = data.name;
       this.stock = data.stock;
+      this.isEdit = true;
     }
   }
 
@@ -43,7 +45,7 @@ export class ProductFormComponent {
     }
 
     if (this.id) {
-      this.productService.updateProduct({ id: this.id, name: this.name, stock: this.stock });
+      this.productService.updateProduct({ id: this.id, name: this.name });
     } else {
       this.productService.addProduct({
         id: Date.now(),

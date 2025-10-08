@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Novo Produto</h2>
+<h2 mat-dialog-title>{{ isEdit ? 'Editar Produto' : 'Novo Produto' }}</h2>
 
 <mat-dialog-content>
     <form (ngSubmit)="save()" #form="ngForm">
@@ -9,7 +9,8 @@
 
         <mat-form-field appearance="fill" class="w-100">
             <mat-label>Estoque inicial</mat-label>
-            <input matInput type="number" [(ngModel)]="stock" name="stock" required />
+            <input matInput type="number" [(ngModel)]="stock" name="stock" [disabled]="isEdit" required />
+            <mat-hint *ngIf="isEdit">O estoque inicial não pode ser alterado após a criação.</mat-hint>
         </mat-form-field>
     </form>
 </mat-dialog-content>
