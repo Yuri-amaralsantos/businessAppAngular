@@ -4,6 +4,7 @@ export interface Product {
   id: number;
   name: string;
   stock: number;
+  category: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -15,9 +16,15 @@ export class ProductService {
     this._products.update((list) => [...list, product]);
   }
 
-  updateProduct(update: { id: number; name: string }) {
+  updateProduct(update: { id: number; name: string; category?: string }) {
     const products = this._products();
-    this._products.set(products.map((p) => (p.id === update.id ? { ...p, name: update.name } : p)));
+    this._products.set(
+      products.map((p) =>
+        p.id === update.id
+          ? { ...p, name: update.name, category: update.category ?? p.category }
+          : p
+      )
+    );
   }
 
   adjustStock(productId: number, delta: number) {

@@ -24,7 +24,8 @@ import { MatMenuModule } from '@angular/material/menu';
   styleUrls: ['./product-list.css'],
 })
 export class ProductListComponent implements AfterViewInit {
-  displayedColumns: string[] = ['name', 'stock', 'actions'];
+  displayedColumns: string[] = ['name', 'category', 'stock', 'actions'];
+
   dataSource: MatTableDataSource<Product>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

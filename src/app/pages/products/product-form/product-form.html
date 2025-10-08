@@ -8,6 +8,13 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Categoria</mat-label>
+            <mat-select [(ngModel)]="category" name="category" required>
+                <mat-option *ngFor="let c of categories" [value]="c">{{ c }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-100">
             <mat-label>Estoque inicial</mat-label>
             <input matInput type="number" [(ngModel)]="stock" name="stock" [disabled]="isEdit" required />
             <mat-hint *ngIf="isEdit">O estoque inicial não pode ser alterado após a criação.</mat-hint>
