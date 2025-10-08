@@ -3,7 +3,7 @@
 Um sistema desenvolvido em Angular 20 utilizando Angular Material e Chart.js para gerenciamento de produtos, estoque e movimentações de um negócio.
 
 ## Demonstração:
-[site](https://business-app-angular.vercel.app/home)
+[link do site](https://business-app-angular.vercel.app/home)
 
 ## Funcionalidades
 
