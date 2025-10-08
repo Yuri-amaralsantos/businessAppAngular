@@ -29,6 +29,7 @@ export class MovementCreateComponent {
   type: 'entrada' | 'saida' | '' = '';
   quantity: number | null = null;
   note: string = '';
+  errorMessage: string = '';
 
   constructor(
     private dialogRef: MatDialogRef<MovementCreateComponent>,
@@ -36,21 +37,45 @@ export class MovementCreateComponent {
     public productService: ProductService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    // Se não houver produtos cadastrados
+    if (this.productService.products().length === 0) {
+      this.errorMessage = 'Não há nenhum produto cadastrado!';
+    }
+
     if (data) {
       this.productId = data.productId || null;
       this.type = data.type || '';
     }
   }
 
-  save() {
-    if (!this.productId || !this.type || !this.quantity) return;
+  get canSave(): boolean {
+    if (!this.productId || !this.type || !this.quantity) return false;
+    const product = this.productService.products().find((p) => p.id === this.productId);
+    if (!product) return false;
 
-    this.movementService.addMovement({
+    if (this.type === 'saida' && this.quantity > product.stock) {
+      this.errorMessage = `Estoque insuficiente! Disponível: ${product.stock}`;
+      return false;
+    }
+
+    this.errorMessage = ''; // limpa mensagem se estiver tudo ok
+    return true;
+  }
+
+  save() {
+    if (!this.canSave || !this.productId || !this.type || !this.quantity) return;
+
+    const result = this.movementService.addMovement({
       productId: this.productId,
       type: this.type,
       quantity: this.quantity,
       note: this.note,
     });
+
+    if (!result.success) {
+      this.errorMessage = result.error || 'Erro ao salvar movimentação';
+      return;
+    }
 
     this.dialogRef.close(true);
   }

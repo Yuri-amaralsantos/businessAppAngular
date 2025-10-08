@@ -16,3 +16,9 @@ mat-dialog-actions {
 button[mat-raised-button] {
   min-width: 100px;
 }
+
+.error-message {
+  color: #f44336;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}

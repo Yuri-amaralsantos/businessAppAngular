@@ -2,7 +2,12 @@
 
 <mat-dialog-content>
     <form (ngSubmit)="save()" #form="ngForm">
-        <mat-form-field appearance="outline" class="w-100">
+        <!-- Mensagem de erro geral -->
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+        </div>
+
+        <mat-form-field appearance="fill" class="w-100">
             <mat-label>Produto</mat-label>
             <mat-select [(ngModel)]="productId" name="productId" required>
                 <mat-option *ngFor="let p of productService.products()" [value]="p.id">
@@ -11,7 +16,7 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
             <mat-label>Tipo</mat-label>
             <mat-select [(ngModel)]="type" name="type" required>
                 <mat-option value="entrada">Entrada</mat-option>
@@ -19,12 +24,12 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
             <mat-label>Quantidade</mat-label>
             <input matInput type="number" min="1" [(ngModel)]="quantity" name="quantity" required />
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="w-100">
+        <mat-form-field appearance="fill" class="w-100">
             <mat-label>Observação</mat-label>
             <textarea matInput [(ngModel)]="note" name="note" rows="2" placeholder="Opcional"></textarea>
         </mat-form-field>
@@ -33,7 +38,7 @@
 
 <mat-dialog-actions align="end">
     <button mat-stroked-button (click)="cancel()">Cancelar</button>
-    <button mat-raised-button color="primary" (click)="save()" [disabled]="!form.valid">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="!canSave">
         Salvar
     </button>
 </mat-dialog-actions>
