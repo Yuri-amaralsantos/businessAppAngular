@@ -24,7 +24,7 @@ import { MatMenuModule } from '@angular/material/menu';
   styleUrls: ['./product-list.css'],
 })
 export class ProductListComponent implements AfterViewInit {
-  displayedColumns: string[] = ['name', 'category', 'stock', 'actions'];
+  displayedColumns: string[] = ['name', 'category', 'stock', 'baseSalePrice', 'actions'];
 
   dataSource: MatTableDataSource<Product>;
 

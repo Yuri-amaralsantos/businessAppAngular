@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { Product, ProductService } from '../../../services/product.service';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 @Component({
   selector: 'app-product-form',
@@ -19,6 +20,7 @@ import { Product, ProductService } from '../../../services/product.service';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
+    CurrencyMaskModule,
   ],
   templateUrl: './product-form.html',
   styleUrls: ['./product-form.css'],
@@ -29,6 +31,7 @@ export class ProductFormComponent {
   category = '';
   id?: number;
   isEdit = false;
+  baseSalePrice = 0;
 
   categories = ['Eletrônicos', 'Roupas', 'Alimentos', 'Brinquedos', 'Outros'];
 
@@ -43,6 +46,7 @@ export class ProductFormComponent {
       this.stock = data.stock;
       this.category = data.category;
       this.isEdit = true;
+      this.baseSalePrice = data.baseSalePrice ?? 0;
     }
   }
 
@@ -56,19 +60,18 @@ export class ProductFormComponent {
       return;
     }
 
+    const productData: Product = {
+      id: this.id ?? Date.now(),
+      name: this.name.trim(),
+      stock: this.stock,
+      category: this.category,
+      baseSalePrice: this.baseSalePrice,
+    };
+
     if (this.id) {
-      this.productService.updateProduct({
-        id: this.id,
-        name: this.name,
-        category: this.category,
-      });
+      this.productService.updateProduct(productData);
     } else {
-      this.productService.addProduct({
-        id: Date.now(),
-        name: this.name.trim(),
-        stock: this.stock,
-        category: this.category,
-      });
+      this.productService.addProduct(productData);
     }
 
     this.dialogRef.close(true);

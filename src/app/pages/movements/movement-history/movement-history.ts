@@ -16,7 +16,7 @@ import { MovementCreateComponent } from '../movement-create/movement-create';
   styleUrls: ['./movement-history.css'],
 })
 export class MovementHistoryComponent implements AfterViewInit {
-  displayedColumns = ['date', 'product', 'type', 'quantity', 'note'];
+  displayedColumns = ['date', 'product', 'type', 'quantity', 'price', 'note'];
   dataSource = new MatTableDataSource<any>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

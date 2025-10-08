@@ -19,10 +19,18 @@
             <input matInput type="number" [(ngModel)]="stock" name="stock" [disabled]="isEdit" required />
             <mat-hint *ngIf="isEdit">O estoque inicial não pode ser alterado após a criação.</mat-hint>
         </mat-form-field>
+
+
+        <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Preço de referência (venda)</mat-label>
+            <input matInput currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', precision: 2 }"
+                [(ngModel)]="baseSalePrice" name="baseSalePrice" placeholder="Ex: R$ 99,90" />
+            <mat-hint>Valor base de venda utilizado como referência.</mat-hint>
+        </mat-form-field>
     </form>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
     <button mat-raised-button mat-dialog-close>Cancelar</button>
-    <button mat-raised-button class="save" (click)="save()">Salvar</button>
+    <button mat-raised-button class="save" color="primary" (click)="save()">Salvar</button>
 </mat-dialog-actions>

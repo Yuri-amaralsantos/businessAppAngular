@@ -6,6 +6,7 @@ export interface StockMovement {
   productId: number;
   type: 'entrada' | 'saida';
   quantity: number;
+  price: number;
   date: Date;
   note?: string;
 }
