@@ -6,11 +6,7 @@ Um sistema desenvolvido em Angular 20 utilizando Angular Material e Chart.js par
 
 Dashboard resumido: Cards com total de produtos, itens em estoque e movimentações.
 
-## Gráficos interativos:
-
-Estoque por produto
-
-Movimentações (Entradas x Saídas)
+Gráficos interativos: Estoque por produto e Movimentações (Entradas x Saídas)
 
 Cadastro de produtos: Adição, edição e remoção de produtos.
 
@@ -71,7 +67,7 @@ npm install
 
 ng serve
 
-## O sistema estará disponível em http://localhost:4200.
+### O sistema estará disponível em http://localhost:4200.
 
 Observações
 
