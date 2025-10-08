@@ -1,12 +1,12 @@
-Sistema de Controle de Estoque e Movimentações
+# Sistema de Controle de Estoque e Movimentações
 
 Um sistema desenvolvido em Angular 20 utilizando Angular Material e Chart.js para gerenciamento de produtos, estoque e movimentações de um negócio.
 
-Funcionalidades
+## Funcionalidades
 
 Dashboard resumido: Cards com total de produtos, itens em estoque e movimentações.
 
-Gráficos interativos:
+## Gráficos interativos:
 
 Estoque por produto
 
@@ -22,7 +22,7 @@ Filtragem e pesquisa: Busca por produto, tipo ou observação nas movimentaçõe
 
 Paginação: Para tabelas grandes, utilizando MatPaginator.
 
-Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 Angular 20 (Standalone Components)
 
@@ -34,7 +34,7 @@ TypeScript
 
 CSS / Flexbox para layout e responsividade
 
-Estrutura do Projeto
+## Estrutura do Projeto
 
 product-list: Tela de produtos com pesquisa, adição, edição e exclusão.
 
@@ -46,7 +46,7 @@ services/product.service.ts: Gerencia produtos usando signal do Angular.
 
 services/movement.service.ts: Gerencia movimentações e cálculos de estoque.
 
-Cadastro de Produto / Movimentação
+## Cadastro de Produto / Movimentação
 
 Utiliza dialogs (MatDialog) com forms reativos / template-driven
 
@@ -56,22 +56,22 @@ Input com máscara de moeda (currencyMask)
 
 Hints e placeholders para melhorar UX
 
-Instalação
+## Instalação
 
-# Clone o repositório
+### Clone o repositório
 
 git clone <repo-url>
 cd nome-do-projeto
 
-# Instale as dependências
+### Instale as dependências
 
 npm install
 
-# Execute o projeto
+### Execute o projeto
 
 ng serve
 
-O sistema estará disponível em http://localhost:4200.
+## O sistema estará disponível em http://localhost:4200.
 
 Observações
 
