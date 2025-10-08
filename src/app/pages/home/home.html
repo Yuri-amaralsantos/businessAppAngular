@@ -1,2 +1,43 @@
-<h1>Bem-vindo ao Gerenciamento de Estoque!</h1>
-<p>Aqui você pode gerenciar produtos, categorias e relatórios.</p>
+<div class="summary">
+    <mat-card>
+        <mat-icon color="primary">inventory_2</mat-icon>
+        <div>
+            <h3>{{ totalProducts() }}</h3>
+            <p>Produtos</p>
+        </div>
+    </mat-card>
+
+    <mat-card>
+        <mat-icon color="primary">stacked_bar_chart</mat-icon>
+        <div>
+            <h3>{{ totalStock() }}</h3>
+            <p>Itens em estoque</p>
+        </div>
+    </mat-card>
+
+    <mat-card>
+        <mat-icon color="primary">history</mat-icon>
+        <div>
+            <h3>{{ totalMovements() }}</h3>
+            <p>Movimentações</p>
+        </div>
+    </mat-card>
+</div>
+
+<mat-divider></mat-divider>
+
+<div class="charts">
+    <mat-card class="chart-card">
+        <h3>Estoque por Produto</h3>
+        <canvas baseChart [data]="stockChartData()" [type]="stockChartType">
+        </canvas>
+    </mat-card>
+
+    <mat-card class="chart-card">
+        <h3>Movimentações (Entradas x Saídas)</h3>
+        <canvas baseChart [data]="movementChartData()" [type]="movementChartType">
+        </canvas>
+    </mat-card>
+
+
+</div>
