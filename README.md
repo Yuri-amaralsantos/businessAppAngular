@@ -1,59 +1,84 @@
-# BmApp
+Sistema de Controle de Estoque e Movimentações
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.2.
+Um sistema desenvolvido em Angular 20 utilizando Angular Material e Chart.js para gerenciamento de produtos, estoque e movimentações de um negócio.
 
-## Development server
+Funcionalidades
 
-To start a local development server, run:
+Dashboard resumido: Cards com total de produtos, itens em estoque e movimentações.
 
-```bash
+Gráficos interativos:
+
+Estoque por produto
+
+Movimentações (Entradas x Saídas)
+
+Cadastro de produtos: Adição, edição e remoção de produtos.
+
+Controle de estoque: Visualização de quantidade disponível de cada produto.
+
+Movimentações: Registro de entradas e saídas, com quantidade, preço unitário e observações.
+
+Filtragem e pesquisa: Busca por produto, tipo ou observação nas movimentações.
+
+Paginação: Para tabelas grandes, utilizando MatPaginator.
+
+Tecnologias Utilizadas
+
+Angular 20 (Standalone Components)
+
+Angular Material (componentes UI modernos)
+
+Chart.js / ng2-charts (gráficos dinâmicos)
+
+TypeScript
+
+CSS / Flexbox para layout e responsividade
+
+Estrutura do Projeto
+
+product-list: Tela de produtos com pesquisa, adição, edição e exclusão.
+
+movement-list: Tela de movimentações com filtros e registro de entradas/saídas.
+
+dashboard: Cards resumidos e gráficos para análise rápida do estoque.
+
+services/product.service.ts: Gerencia produtos usando signal do Angular.
+
+services/movement.service.ts: Gerencia movimentações e cálculos de estoque.
+
+Cadastro de Produto / Movimentação
+
+Utiliza dialogs (MatDialog) com forms reativos / template-driven
+
+Campos com validação obrigatória
+
+Input com máscara de moeda (currencyMask)
+
+Hints e placeholders para melhorar UX
+
+Instalação
+
+# Clone o repositório
+
+git clone <repo-url>
+cd nome-do-projeto
+
+# Instale as dependências
+
+npm install
+
+# Execute o projeto
+
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+O sistema estará disponível em http://localhost:4200.
 
-## Code scaffolding
+Observações
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Todas as tabelas possuem paginador e ordenação.
 
-```bash
-ng generate component component-name
-```
+A filtragem é dinâmica e considera nome, categoria, tipo e observações.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+O layout é totalmente responsivo usando Flexbox e Angular Material.
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Gráficos são dinâmicos e atualizam conforme produtos e movimentações são alterados.
