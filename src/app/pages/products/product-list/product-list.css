@@ -2,7 +2,15 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .table-container {
@@ -50,4 +58,13 @@ button[mat-icon-button]:hover {
   padding: 1rem;
   color: #666;
   text-align: center;
+}
+
+.search-field {
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.search-field .mat-mdc-form-field-subscript-wrapper {
+  display: none;
 }
