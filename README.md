@@ -59,8 +59,7 @@ Hints e placeholders para melhorar UX
 
 ### Clone o repositório
 
-git clone <repo-url>
-cd nome-do-projeto
+git clone https://github.com/Yuri-amaralsantos/businessAppAngular.git
 
 ### Instale as dependências
 
